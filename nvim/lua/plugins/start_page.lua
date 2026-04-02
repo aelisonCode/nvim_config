@@ -34,7 +34,9 @@ return {
         dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
         dashboard.button("r", "  Recent files", ":Telescope oldfiles <CR>"),
         dashboard.button("s", "  Settings", ":e $MYVIMRC <CR>"),
-        dashboard.button("q", "  Quit", ":qa<CR>"),
+		dashboard.button("p", "󰏖  Plugins", ":cd ~/.config/nvim/lua/plugins | e .<CR>"),
+		dashboard.button("c", "  Configs", ":cd ~/.config/nvim/lua/configs | e .<CR>"),
+        dashboard.button("q", "󰅙  Quit", ":qa<CR>"),
       }
       dashboard.section.footer.val = "Hello there ! Want a cacahuete ?"
 
