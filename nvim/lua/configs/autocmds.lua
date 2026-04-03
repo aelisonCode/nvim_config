@@ -1,5 +1,5 @@
 -- Shows the lsp error when cursor on it
-vim.opt.updatetime = 500
+vim.opt.updatetime = 300
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     local opts = {

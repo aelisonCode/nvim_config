@@ -1,6 +1,7 @@
 local keymap = vim.keymap
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- From insert mode escape to normal mode without pressing the ESC button
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- Normal mode: moves lines
 keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -25,3 +26,13 @@ keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split Window Vertically' })
 keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split Window Horizontally' })
 keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make Splits Equal Size' })
 keymap.set('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close Current Split' })
+
+-- Replace all instances of the word under the cursor
+keymap.set("n", "<leader>ra", [[:%s/\<<C-r><C-w>\>/]], { desc = "Replace all instances of word under cursor" })
+
+-- Buffer Navigation
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next Buffer" }) -- Shift + l
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous Buffer" }) -- Shift + h
+
+-- Close current buffer
+vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { desc = "Close current buffer" })

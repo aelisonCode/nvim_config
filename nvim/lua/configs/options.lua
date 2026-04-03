@@ -11,3 +11,4 @@ opt.smartcase = true
 opt.clipboard = "unnamedplus"
 opt.undofile = true
 opt.confirm = true
+opt.swapfile = false

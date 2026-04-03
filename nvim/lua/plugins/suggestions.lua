@@ -14,36 +14,53 @@ return {
       local luasnip = require("luasnip")
 
       require("luasnip.loaders.from_vscode").lazy_load()
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+        cmp.setup({
+		snippet = {
+		  expand = function(args)
+		    luasnip.lsp_expand(args.body)
+		  end,
         },
-		window = {
-			completion = cmp.config.window.bordered({
-			  border = "rounded",
-			  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-			}),
-			documentation = cmp.config.window.bordered({
-			  border = "rounded",
-			  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-			}),
-		  },
+	performance = {
+	  max_view_entries = 10,
+	},
+	window = {
+		completion = cmp.config.window.bordered({
+		  border = "rounded",
+		  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+		}),
+		documentation = cmp.config.window.bordered({
+		  border = "rounded",
+		  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+		}),
+	},
+	preselect = cmp.PreselectMode.None,
+	completion = {
+	completeopt = 'menu,menuone,noinsert,noselect',
+	},
         mapping = cmp.mapping.preset.insert({
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+		['<CR>'] = cmp.mapping.confirm({
+		select = false,
+		}),
+		['<Tab>'] = cmp.mapping(function(fallback)
+			if cmp.visible() and cmp.get_selected_entry() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		['<S-Tab>'] = cmp.mapping(function(fallback)
+			if cmp.visible() and cmp.get_selected_entry() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
         }),
       })
     end,

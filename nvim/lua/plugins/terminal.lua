@@ -16,7 +16,6 @@ return {
     })
 
     local opts = { noremap = true, silent = true }
-    vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>', { desc = "Terminal Float" })
-    vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Terminal Horizontal" })
+    vim.keymap.set('n', '<C-/>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Terminal Horizontal" })
   end
 }
