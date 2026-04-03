@@ -10,6 +10,20 @@ return {
 	  vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, { desc = 'Go to previous error' })
       vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, { desc = 'Go to next error' })
 	  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+	  vim.keymap.set('n', 'gv', function()
+	    vim.cmd("vsplit")
+	    vim.lsp.buf.definition()
+	  end, { desc = 'Go to definition in split' })
+
+ 	  vim.diagnostic.config({
+		  float = {
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+		  },
+	  })
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {

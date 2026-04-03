@@ -20,14 +20,16 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        window = {
-          completion = cmp.config.window.bordered({
-            winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
-          }),
-          documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
-          }),
-        },
+		window = {
+			completion = cmp.config.window.bordered({
+			  border = "rounded",
+			  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+			}),
+			documentation = cmp.config.window.bordered({
+			  border = "rounded",
+			  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+			}),
+		  },
         mapping = cmp.mapping.preset.insert({
           ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-j>"] = cmp.mapping.select_next_item(),

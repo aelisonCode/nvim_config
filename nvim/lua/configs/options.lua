@@ -2,11 +2,12 @@ local opt = vim.opt
 
 opt.number = true
 opt.relativenumber = true
-opt.shiftwidth = 4
-opt.tabstop = 4
+opt.shiftwidth = 8
+opt.tabstop = 8
 opt.expandtab = false
 opt.termguicolors = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.clipboard = "unnamedplus"
 opt.undofile = true
+opt.confirm = true
