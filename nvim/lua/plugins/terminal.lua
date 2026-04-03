@@ -11,7 +11,7 @@ return {
       direction = "float",
       float_opts = {
         border = "rounded",
-        winblend = 3,
+        winblend = 0,	-- Control the % of transparency
       },
     })
 
