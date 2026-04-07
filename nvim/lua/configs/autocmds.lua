@@ -23,3 +23,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#bb9af7", bold = true })
+
+-- Force .s files to be treated as 'asm' so the LSP attaches
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.s",
+  command = "set filetype=asm",
+})

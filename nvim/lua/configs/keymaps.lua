@@ -31,8 +31,22 @@ keymap.set('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close Current Split' }
 keymap.set("n", "<leader>ra", [[:%s/\<<C-r><C-w>\>/]], { desc = "Replace all instances of word under cursor" })
 
 -- Buffer Navigation
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next Buffer" }) -- Shift + l
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous Buffer" }) -- Shift + h
+keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next Buffer" }) -- Shift + l
+keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous Buffer" }) -- Shift + h
 
 -- Close current buffer
-vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>x", ":bdelete<CR>", { desc = "Close current buffer" })
+
+-- Better indenting: Keep the selection after shifting
+keymap.set("v", "<", "<gv", { desc = "Indent left and keep selection" })
+keymap.set("v", ">", ">gv", { desc = "Indent right and keep selection" })
+
+-- Clear search highlights with Escape
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+
+-- Keep search results centered
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
+
+-- Disable Ex mode (it's usually more annoying than helpful)
+keymap.set("n", "Q", "<Nop>")

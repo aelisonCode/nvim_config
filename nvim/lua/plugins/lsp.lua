@@ -30,11 +30,12 @@ return {
           "clangd",
           "pylsp",
           "lua_ls",
+	  -- "asm_lsp",
         },
       })
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local servers = { "clangd", "pylsp", "lua_ls" }
+      local servers = { "clangd", "pylsp", "lua_ls"--[[ , "asm_lsp" ]] }
 
       for _, server in ipairs(servers) do
         if vim.lsp.config then
