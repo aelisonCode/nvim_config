@@ -1,5 +1,5 @@
 # About
-Backup configuration for my wezterminal and nvim
+Backup configuration for my wezterm terminal, my zsh configurations and nvim
 
 ## ZSH Terminal
 Copy the zshrc file as a hidden file in your home directory
