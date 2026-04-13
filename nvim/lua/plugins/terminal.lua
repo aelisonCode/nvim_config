@@ -1,21 +1,21 @@
 return {
-  "akinsho/toggleterm.nvim",
-  version = "*",
-  config = function()
-    require("toggleterm").setup({
-      size = 20,
-      open_mapping = [[<C-\>]], -- Press Ctrl + \ to toggle
-      hide_numbers = true,
-      shade_terminals = true,
-      shading_factor = 2,
-      direction = "float",
-      float_opts = {
-        border = "rounded",
-        winblend = 0,	-- Control the % of transparency
-      },
-    })
+	"akinsho/toggleterm.nvim",
+	version = "*",
+	config = function()
+		require("toggleterm").setup({
+			size = 20,
+			open_mapping = [[<C-\>]], -- Press Ctrl + \ to toggle
+			hide_numbers = true,
+			shade_terminals = true,
+			shading_factor = 2,
+			direction = "float",
+			float_opts = {
+				border = "rounded",
+				winblend = 0,	-- Control the % of transparency
+			},
+		})
 
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set('n', '<C-/>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Terminal Horizontal" })
-  end
+		local opts = { noremap = true, silent = true }
+		vim.keymap.set('n', '<C-/>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Terminal Horizontal" })
+	end
 }

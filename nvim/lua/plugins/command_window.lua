@@ -1,43 +1,43 @@
 return {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-  },
-  config = function()
-    require("noice").setup({
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.set_query_lper"] = true,
-          ["node_cursor.util.stylize_markdown"] = true,
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = false,
-        lsp_doc_border = false,
-      },
-      views = {
-        cmdline_popup = {
-          position = {
-            row = 5,
-            col = "50%",
-          },
-          size = {
-            width = 60,
-            height = "auto",
-          },
-        },
-      },
-    })
+	"folke/noice.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	},
+	config = function()
+		require("noice").setup({
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.set_query_lper"] = true,
+					["node_cursor.util.stylize_markdown"] = true,
+				},
+			},
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = false,
+				lsp_doc_border = false,
+			},
+			views = {
+				cmdline_popup = {
+					position = {
+						row = 5,
+						col = "50%",
+					},
+					size = {
+						width = 60,
+						height = "auto",
+					},
+				},
+			},
+		})
 
-    require("notify").setup({
-      background_colour = "#000000",
-      render = "compact",
-    })
-  end,
+		require("notify").setup({
+			background_colour = "#000000",
+			render = "compact",
+		})
+	end,
 }
