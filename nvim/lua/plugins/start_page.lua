@@ -26,21 +26,24 @@ return {
 				padding(4),      -- BOTTOM PADDING (Space between Buttons and Footer)
 				dashboard.section.footer,
 			}
-			math.randomseed(os.time())
-			local current_quote = quotes[math.random(#quotes)]
+			local quote_index = 1
+			local current_quote = quotes[quote_index]
 
-			local cat_a = {
-				"\\   /\\",
-				")  ( ')",
-				"( /  )",
-				"\\(__)|",
-			}
+			local current_frame = 1
+			local cat_frames = {
+				{
+					"\\   /\\",
+					")  ( ')",
+					"( /  )",
+					"\\(__)|",
+				},
+				{
+					"/   /\\",
+					"(  ( ')",
+					") /  )",
+					"\\(__)|",
 
-			local cat_b = {
-				"/   /\\",
-				"(  ( ')",
-				") /  )",
-				"\\(__)|",
+				}
 
 			}
 
@@ -73,21 +76,23 @@ return {
 				end
 				return combined
 			end
+
 			-- Initial Draw
-			dashboard.section.header.val = get_header(cat_a)
+			dashboard.section.header.val = get_header(cat_frames[1])
 
-			-- Cat Animation Loop
-			local function animate_cat(state)
-				if vim.bo.filetype ~= "alpha" then
-					return
-				end
+			local function animate_cat()
+				if vim.bo.filetype ~= "alpha" then return end
+				local frame = cat_frames[current_frame]
 
-				dashboard.section.header.val = get_header(state and cat_a or cat_b)
+				dashboard.section.header.val = get_header(frame)
 				alpha.redraw()
-				vim.defer_fn(function() animate_cat(not state) end, 700)
+
+				current_frame = (current_frame % #cat_frames) + 1
+
+				vim.defer_fn(animate_cat, 700)
 			end
 
-			animate_cat(true)
+			animate_cat()
 			-- Set the Menu buttons
 			dashboard.section.buttons.val = {
 				dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
@@ -100,42 +105,41 @@ return {
 				dashboard.button("q", "󰅙  Quit", ":qa<CR>"),
 			}
 			dashboard.section.footer.val = current_quote
-			local function animate_footer()
-				if vim.bo.filetype ~= "alpha" then
-					return
-				end
 
-				local new_quote = quotes[math.random(#quotes)]
-				while new_quote == current_quote do
-					new_quote = quotes[math.random(#quotes)]
-				end
+			local function animate_footer()
+				if vim.bo.filetype ~= "alpha" then return end
+
+				quote_index = (quote_index % #quotes) + 1
+				local new_quote = quotes[quote_index]
 
 				local delay = 20
 				for i = #current_quote, 0, -1 do
 					vim.defer_fn(function()
-						dashboard.section.footer.val = current_quote:sub(1, i)
-						alpha.redraw()
+						if vim.bo.filetype == "alpha" then
+							dashboard.section.footer.val = current_quote:sub(1, i)
+							alpha.redraw()
+						end
 					end, (#current_quote - i) * delay)
 				end
 
 				local start_typing_delay = #current_quote * delay + 500
 				for i = 1, #new_quote do
 					vim.defer_fn(function()
-						dashboard.section.footer.val = new_quote:sub(1, i)
-						alpha.redraw()
-						if i == #new_quote then
-							current_quote = new_quote
-							-- WAIT 5 seconds and then run the animation again
-							vim.defer_fn(animate_footer, 10000)
+						if vim.bo.filetype == "alpha" then
+							dashboard.section.footer.val = new_quote:sub(1, i)
+							alpha.redraw()
+							if i == #new_quote then
+								current_quote = new_quote
+								vim.defer_fn(animate_footer, 10000)
+							end
 						end
 					end, start_typing_delay + (i * delay))
 				end
 			end
-
 			alpha.setup(dashboard.opts)
 			-- Starting animation after 10 seconds
 			vim.defer_fn(function()
-				animate_cat(true)
+				animate_cat()
 			end, 100)
 			vim.defer_fn(animate_footer, 10000)
 		end,
