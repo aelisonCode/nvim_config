@@ -17,4 +17,13 @@ vim.opt.rtp:prepend(lazypath)
 require("configs.options")
 require("configs.keymaps")
 require("configs.autocmds")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	ui = {
+		border = "rounded",
+		size = {
+			width = 0.80,
+			height = 0.80,
+		},
+		wrap = true,
+	},
+})
