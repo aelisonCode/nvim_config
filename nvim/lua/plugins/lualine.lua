@@ -24,6 +24,11 @@ local bubbles_theme = {
 	},
 }
 
+local timer = vim.uv.new_timer()
+timer:start(0, 60000, vim.schedule_wrap(function()
+	pcall(require("lualine").refresh, { place = { "statusline" } })
+end))
+
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
@@ -36,7 +41,14 @@ return {
 		sections = {
 			lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
 			lualine_b = { 'filename', 'branch' },
-			lualine_c = { '%=' },
+			lualine_c = {
+				'%=',
+				{
+					function()
+						return os.date("%A %d %B, %H:%M")
+					end
+				},
+			},
 			lualine_x = {},
 			lualine_y = { 'filetype', 'progress' },
 			lualine_z = {
