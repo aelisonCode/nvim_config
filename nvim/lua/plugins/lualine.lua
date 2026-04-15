@@ -45,7 +45,7 @@ return {
 				'%=',
 				{
 					function()
-						return os.date("%A %d %B, %H:%M")
+						return os.date("%A %d %B %Y,        %H:%M")
 					end
 				},
 			},
