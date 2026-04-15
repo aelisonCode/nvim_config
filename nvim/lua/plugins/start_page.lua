@@ -6,6 +6,7 @@ return {
 		config = function()
 			local alpha = require("alpha")
 			local dashboard = require("alpha.themes.dashboard")
+
 			local quotes = {
 				"Hello there ! Want a cacahuete ?",
 				"My name is huete.. cacahuete",
@@ -13,87 +14,63 @@ return {
 				"May the source be with you",
 				"Assembly better than all",
 				"0001 + 0001 = 0010, change my mind",
-				"There is no better place than 127.0.0.1"
+				"There is no better place than 127.0.0.1",
 			}
+
 			local function padding(n)
 				return { type = "padding", val = n }
 			end
+
 			dashboard.config.layout = {
-				padding(10),      -- TOP PADDING (Moves everything down)
+				padding(15),
 				dashboard.section.header,
-				padding(4),      -- MIDDLE PADDING (Space between Header and Buttons)
+				padding(4),
 				dashboard.section.buttons,
-				padding(4),      -- BOTTOM PADDING (Space between Buttons and Footer)
+				padding(4),
 				dashboard.section.footer,
 			}
-			local quote_index = 1
-			local current_quote = quotes[quote_index]
 
 			local current_frame = 1
-			local cat_frames = {
+			local frames = {
 				{
-					"\\   /\\",
-					")  ( ')",
-					"( /  )",
-					"\\(__)|",
+					" /\\_/\\ ",
+					"( o.o )",
+					" > ^ < ",
 				},
 				{
-					"/   /\\",
-					"(  ( ')",
-					") /  )",
-					"\\(__)|",
+					" /\\_/\\ ",
+					"( o.< )",
+					" > ^ < ",
+				},
+				{
+					" /\\_/\\ ",
+					"( o.o )",
+					" > ^ < ",
+				},
 
-				}
+				{
+					" /\\_/\\ ",
+					"( -.- )",
+					" > ^ < ",
+				},
 
 			}
 
-			local main_header = {
-				" █████╗ ███████╗██╗     ██╗███████╗ ██████╗ ███╗   ██╗",
-				"██╔══██╗██╔════╝██║     ██║██╔════╝██╔═══██╗████╗  ██║",
-				"███████║█████╗  ██║     ██║███████╗██║   ██║██╔██╗ ██║",
-				"██╔══██║██╔══╝  ██║     ██║╚════██║██║   ██║██║╚██╗██║",
-				"██║  ██║███████╗███████╗██║███████║╚██████╔╝██║ ╚████║",
-				"╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝",
-				"            ██████╗ ██████╗ ██████╗ ███████╗          ",
-				"           ██╔════╝██╔═══██╗██╔══██╗██╔════╝          ",
-				"           ██║     ██║   ██║██║  ██║█████╗            ",
-				"           ██║     ██║   ██║██║  ██║██╔══╝            ",
-				"           ╚██████╗╚██████╔╝██████╔╝███████╗          ",
-				"            ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝          ",
-			}
+			dashboard.section.header.val = frames[current_frame]
 
-			local function get_header(cat_frame)
-				local combined = {}
-				local cat_start_line = 9
-
-				for i, header_line in ipairs(main_header) do
-					if i >= cat_start_line and i < cat_start_line + #cat_frame then
-						local cat_line = cat_frame[i - cat_start_line + 1]
-						table.insert(combined, header_line .. " " .. cat_line)
-					else
-						table.insert(combined, header_line)
-					end
+			local function animate_header()
+				if vim.bo[0].filetype ~= "alpha" then
+					vim.defer_fn(animate_header, 50)
+					return
 				end
-				return combined
-			end
 
-			-- Initial Draw
-			dashboard.section.header.val = get_header(cat_frames[1])
-
-			local function animate_cat()
-				if vim.bo.filetype ~= "alpha" then return end
-				local frame = cat_frames[current_frame]
-
-				dashboard.section.header.val = get_header(frame)
+				current_frame = (current_frame % #frames) + 1
+				dashboard.section.header.val = frames[current_frame]
 				alpha.redraw()
 
-				current_frame = (current_frame % #cat_frames) + 1
-
-				vim.defer_fn(animate_cat, 700)
+				vim.defer_fn(animate_header, 700)
 			end
 
-			animate_cat()
-			-- Set the Menu buttons
 			dashboard.section.buttons.val = {
 				dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
 				dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
@@ -104,6 +81,9 @@ return {
 				dashboard.button("c", "  Configs", ":cd ~/.config/nvim/lua/configs | e .<CR>"),
 				dashboard.button("q", "󰅙  Quit", ":qa<CR>"),
 			}
+
+			local quote_index = 1
+			local current_quote = quotes[quote_index]
 			dashboard.section.footer.val = current_quote
 
 			local function animate_footer()
@@ -113,6 +93,7 @@ return {
 				local new_quote = quotes[quote_index]
 
 				local delay = 20
+
 				for i = #current_quote, 0, -1 do
 					vim.defer_fn(function()
 						if vim.bo.filetype == "alpha" then
@@ -136,11 +117,14 @@ return {
 					end, start_typing_delay + (i * delay))
 				end
 			end
+
 			alpha.setup(dashboard.opts)
-			-- Starting animation after 10 seconds
-			vim.defer_fn(function()
-				animate_cat()
-			end, 100)
+
+			-- Start animations (schedule header so alpha buffer is active)
+			vim.schedule(function()
+				animate_header()
+			end)
+
 			vim.defer_fn(animate_footer, 10000)
 		end,
 	},
