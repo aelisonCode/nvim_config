@@ -11,6 +11,10 @@ return {
 					sidebars = "transparent",
 					floats = "transparent",
 				},
+				on_highlights = function(hl, c)
+					hl.StatusLine = { bg = "NONE" }
+					hl.StatusLineNC = { bg = "NONE" }
+				end,
 			})
 			vim.cmd([[colorscheme tokyonight]])
 		end,

@@ -12,7 +12,7 @@ local bubbles_theme = {
 	normal = {
 		a = { fg = colors.black, bg = colors.violet },
 		b = { fg = colors.white, bg = colors.grey },
-		c = { fg = colors.white },
+		c = { fg = colors.white, bg = 'NONE'},
 	},
 	insert = { a = { fg = colors.black, bg = colors.blue } },
 	visual = { a = { fg = colors.black, bg = colors.cyan } },
@@ -20,7 +20,7 @@ local bubbles_theme = {
 	inactive = {
 		a = { fg = colors.white, bg = colors.black },
 		b = { fg = colors.white, bg = colors.black },
-		c = { fg = colors.white },
+		c = { fg = colors.white, bg = 'NONE'},
 	},
 }
 
@@ -58,7 +58,14 @@ return {
 		inactive_sections = {
 			lualine_a = { 'filename' },
 			lualine_b = {},
-			lualine_c = {},
+			lualine_c = {
+				'%=',
+				{
+					function()
+						return os.date("%A %d %B %Y,      %H:%M")
+					end
+				},
+			},
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = { 'location' },
