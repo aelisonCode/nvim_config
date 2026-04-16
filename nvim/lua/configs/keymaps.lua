@@ -50,3 +50,10 @@ keymap.set("n", "N", "Nzzzv")
 
 -- Disable Ex mode (it's usually more annoying than helpful)
 keymap.set("n", "Q", "<Nop>")
+
+-- Command to access settings
+keymap.set("n", "<leader>l", ":Lazy<CR>", { desc = "󰒲 Open lazyvim manager" })
+keymap.set("n", "<leader>i", ":e $MYVIMRC <CR>", { desc = " Open init lua file" })
+keymap.set("n", "<leader>p", ":cd ~/.config/nvim/lua/plugins | e .<CR>", { desc = "󰏖 Get to plugins" })
+keymap.set("n", "<leader>o", ":cd ~/.config/nvim/lua/configs | e .<CR>", { desc = " Get to options" })
+
