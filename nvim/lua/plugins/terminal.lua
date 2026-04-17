@@ -12,10 +12,26 @@ return {
 			float_opts = {
 				border = "rounded",
 				winblend = 0,	-- Control the % of transparency
+
+				width = function()
+					-- width of the window	
+					return math.floor(vim.o.columns * 0.80)
+				end,
+				height = function()
+					-- height of the window
+					return math.floor(vim.o.lines * 0.25)
+				end,
+
+				col = function()
+					-- width start position
+					return math.floor(vim.o.columns * 0.1)
+				end,
+
+				row = function()
+					-- height start position
+					return math.floor(vim.o.lines * 0.7)
+				end,
 			},
 		})
-
-		local opts = { noremap = true, silent = true }
-		vim.keymap.set('n', '<C-/>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Terminal Horizontal" })
 	end
 }
