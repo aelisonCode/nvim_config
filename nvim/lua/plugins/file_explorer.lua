@@ -11,10 +11,10 @@ return {
 			window = {
 				position = "float",
 				popup = {
-					position = { col = "100%", row = "2" },
+					position = { col = "100%", row = "3" },
 					size = {
 						width = 40,
-						height = "80%",
+						height = "75%",
 					},
 					border = "rounded",
 				},
