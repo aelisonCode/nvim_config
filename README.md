@@ -5,6 +5,10 @@ Backup configuration for my wezterm terminal, my zsh configurations and nvim
 Copy the zshrc file as a hidden file in your home directory.
 
 Copy the folder zsh/ in your home directory that will contain all your plugins.
+Example of plugins:
+
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 ## Wezterm
 Copy the folder "wezterm" inside the folder /home/$USER/.config/
