@@ -9,6 +9,9 @@ return {
 			shade_terminals = true,
 			shading_factor = 2,
 			direction = "float",
+			on_create = function(term)
+				term:send("clear", false)
+			end,
 			float_opts = {
 				border = "rounded",
 				winblend = 0,	-- Control the % of transparency
