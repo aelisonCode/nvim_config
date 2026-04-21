@@ -22,5 +22,3 @@ opt.swapfile = false
 -- Let wrap some functions, block of code: use keymap "za", "zc"
 opt.foldmethod = "syntax"
 opt.foldlevel = 99
-
--- indent all: gg=G
