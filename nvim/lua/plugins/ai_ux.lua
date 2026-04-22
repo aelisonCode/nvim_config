@@ -50,13 +50,13 @@ return {
 			bufnr = nil,
 			mark_id = nil,
 			active = false,
+			anchor_line = nil,
 		}
 
 		local function is_chat_buffer(bufnr)
-			if not (bufnr and vim.api.nvim_buf_is_valid(bufnr)) then
-				return false
-			end
-			return vim.bo[bufnr].filetype == "codecompanion"
+			return bufnr
+			and vim.api.nvim_buf_is_valid(bufnr)
+			and vim.bo[bufnr].filetype == "codecompanion"
 		end
 
 		local function clear_spinner()
@@ -74,6 +74,7 @@ return {
 
 			state.bufnr = nil
 			state.mark_id = nil
+			state.anchor_line = nil
 		end
 
 		local function render()
@@ -84,12 +85,16 @@ return {
 				return clear_spinner()
 			end
 
-			local last = math.max(vim.api.nvim_buf_line_count(state.bufnr) - 1, 0)
+			local line_count = vim.api.nvim_buf_line_count(state.bufnr)
+			local anchor = state.anchor_line or math.max(line_count - 1, 0)
+			anchor = math.max(math.min(anchor, line_count - 1), 0)
 
-			state.mark_id = vim.api.nvim_buf_set_extmark(state.bufnr, ns, last, 0, {
+			state.mark_id = vim.api.nvim_buf_set_extmark(state.bufnr, ns, anchor, 0, {
 				id = state.mark_id,
-				virt_text = { { " " .. spinner[idx] .. " thinking…", "Comment" } },
-				virt_text_pos = "eol",
+				virt_lines = {
+					{ { spinner[idx] .. " thinking…", "Comment" } },
+				},
+				virt_lines_above = false,
 				hl_mode = "combine",
 			})
 
@@ -101,10 +106,12 @@ return {
 				return
 			end
 
-			clear_spinner() -- reset any previous spinner
+			clear_spinner()
 			state.active = true
 			state.bufnr = bufnr
 			idx = 1
+
+			state.anchor_line = math.max(vim.api.nvim_buf_line_count(bufnr) - 1, 0)
 
 			state.timer = vim.uv.new_timer()
 			state.timer:start(0, 80, vim.schedule_wrap(render))
@@ -114,8 +121,7 @@ return {
 			group = group,
 			pattern = "CodeCompanionRequestStarted",
 			callback = function()
-				local bufnr = vim.api.nvim_get_current_buf()
-				start_spinner_for(bufnr)
+				start_spinner_for(vim.api.nvim_get_current_buf())
 			end,
 		})
 
