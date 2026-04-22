@@ -5,8 +5,8 @@ return {
 	},
 	opts = {
 		autostart = true,
-		times = { "09:30", "15:00"},
-		messages = { "Hey, time to take a break!", "You worked well, wanna go home?" },
+		times = { "08:30", "10:30", "11:00", "14:30", "16:00" },
+		messages = { "Hey, time to take a break!", "Need to take some water", "Time to eat there !", "Take a break", "Home is calling, right now !" },
 		keymaps = {
 			enabled = true,
 			start = "<leader>ts",
