@@ -8,6 +8,7 @@ Copy the folder zsh/ in your home directory that will contain all your plugins.
 Example of plugins:
 
 git clone https://github.com/zsh-users/zsh-autosuggestions
+
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 ## Wezterm
