@@ -7,10 +7,10 @@ return {
 				enabled = false,
 				auto_trigger = true ,
 				keymap = {
-					accept = "<TAB>"
+					accept = "<C-CR>"
 				}
 		},
-		panel = { 
+		panel = {
 			enabled = false
 		},
 	})
