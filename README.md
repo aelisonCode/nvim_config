@@ -22,9 +22,11 @@ Copy the folder "wezterm" inside the folder /home/$USER/.config/
 
 Get a font. Download your font, and put it inside  /home/$USER/.local/share/fonts/
 
-Use the nerd font to get all the symbols and put it inside settings.lua.
+Use the nerd font to get all the symbols to work inside nvim and put it inside settings.lua.
 
 In the folder color.lua, change the background image path to your image, if no need, delete or comment the code
+
+Put the startship.toml file inside the folder ~/.config/ and customize it as you like !
 
 Make sure to have the necessary binary:
 

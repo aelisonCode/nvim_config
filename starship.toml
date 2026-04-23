@@ -1,0 +1,13 @@
+format = """
+[](#d183e8)\
+$hostname\
+[](#d183e8) \
+[angry cacahuete 😾](#d183e8) \
+$all\
+""" 
+
+[hostname]
+ssh_only = false
+trim_at = "."
+style = "bg:#d183e8 fg:#080808"
+format = "[$hostname]($style)"
