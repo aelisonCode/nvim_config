@@ -11,9 +11,8 @@ return {
 			shade_terminals = true,
 			shading_factor = 2,
 			direction = "float",
-
 			-- on_create = function(term)
-			-- 	term:send("clear", false)
+			-- 	term:send("echo Hello there, You will do great today !", false)
 			-- end,
 
 			on_open = function(term)
