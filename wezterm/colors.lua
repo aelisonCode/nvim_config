@@ -1,4 +1,4 @@
--- local home = os.getenv("HOME")	Could be used to get the image path if need
+local home = os.getenv("HOME")	-- Could be used to get the image path if need
 
 local colors = {
 	color_scheme = 'Tokyo Night',
@@ -6,7 +6,7 @@ local colors = {
 	background = {
 		{
 			source = {
-				File = "/home/aelison/.config/wezterm/background/tanjiro_blured20.jpg",
+				File = home .. "/.config/wezterm/background/tanjiro.jpg",
 			},
 			hsb = {
 				brightness = 0.7
