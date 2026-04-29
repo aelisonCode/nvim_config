@@ -1,13 +1,21 @@
 format = """
-[](#d183e8)\
+[](purple)\
 $hostname\
-[](#d183e8) \
-[angry cacahuete 😾](#d183e8) \
+[](purple) \
+[I am a cacahuete 🥜](green) \
 $all\
 """ 
+
+#[character]
+#success_symbol = '🥜'
+#error_symbol = '👿'
+
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
 
 [hostname]
 ssh_only = false
 trim_at = "."
-style = "bg:#d183e8 fg:#080808"
+style = "bg:purple fg:black"
 format = "[$hostname]($style)"

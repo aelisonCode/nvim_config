@@ -1,8 +1,3 @@
-# Created by newuser for 5.8.1
-
-# ============= My variables ===============
-
-
 # ============== My aliases =================
 alias c=clear
 alias sl=ls
@@ -19,3 +14,6 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ============ Starship =============
 eval "$(starship init zsh)"
+
+#=========== Command to execute everytime zsh is launched ==================
+clear
