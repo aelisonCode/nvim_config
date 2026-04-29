@@ -9,12 +9,11 @@ return {
 
 			local quotes = {
 				"Hello there ! Want a cacahuete ?",
-				"My name is huete.. cacahuete",
-				"Nothing to say, start doing what you have to do",
+				"Stop wasting time and work",
 				"May the source be with you",
 				"Assembly better than all",
-				"0001 + 0001 = 0010, change my mind",
-				"There is no better place than 127.0.0.1",
+				"01 + 01 = 10, change my mind",
+				"Mufasa is in the place !",
 			}
 
 			local function padding(n)
@@ -55,7 +54,6 @@ return {
 				},
 
 			}
-
 			dashboard.section.header.val = frames[current_frame]
 
 			local function animate_header()

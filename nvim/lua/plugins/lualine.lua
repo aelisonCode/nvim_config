@@ -42,12 +42,12 @@ return {
 			lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
 			lualine_b = { 'filename', 'branch' },
 			lualine_c = {
-				-- '%=',
-				-- {
-				-- 	function()
-				-- 		return os.date("%A %d %B %Y,      %H:%M")
-				-- 	end
-				-- },
+				'%=',
+				{
+					function()
+						return os.date("%A %d %B %Y")
+					end
+				},
 			},
 			lualine_x = {},
 			lualine_y = { 'filetype', 'progress' },
