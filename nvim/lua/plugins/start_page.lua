@@ -11,8 +11,8 @@ return {
 				"Hello there ! Want a cacahuete ?",
 				"Stop wasting time and work",
 				"May the source be with you",
-				"Assembly better than all",
-				"01 + 01 = 10, change my mind",
+				"Assembly make me cry, please help",
+				"01 + 01 = 10, it is what it is",
 				"Mufasa is in the place !",
 			}
 

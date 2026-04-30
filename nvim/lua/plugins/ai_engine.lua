@@ -9,10 +9,10 @@ return {
 				keymap = {
 					accept = "<C-CR>"
 				}
-		},
-		panel = {
-			enabled = false
-		},
-	})
-end,
+			},
+			panel = {
+				enabled = false
+			},
+		})
+	end,
 }
